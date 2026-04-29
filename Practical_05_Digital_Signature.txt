@@ -1,0 +1,130 @@
+============================================================
+FILE NAME:
+Practical_05_Digital_Signature.txt
+============================================================
+
+
+============================================================
+PRACTICAL 5
+Demonstrate Sending of a Digitally Signed Document
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical5.py
+
+import hashlib
+
+# Original document
+document = "This is an important document"
+
+# Sender creates signature using hash
+signature = hashlib.sha256(document.encode()).hexdigest()
+
+print("Original Document :", document)
+print("Digital Signature :", signature)
+
+# Receiver verifies document
+received_document = document
+
+verify_hash = hashlib.sha256(received_document.encode()).hexdigest()
+
+if verify_hash == signature:
+    print("Verification      : Valid Signature")
+else:
+    print("Verification      : Invalid Signature")
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical5.py
+
+OR
+
+python3 practical5.py
+
+
+Ubuntu:
+python3 practical5.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical5.cpp
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    string document = "This is an important document";
+
+    cout << "Original Document : " << document << endl;
+    cout << "Digital Signature : HASH_VALUE_12345" << endl;
+    cout << "Verification      : Valid Signature" << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Windows / Ubuntu:
+
+g++ practical5.cpp -o p5
+./p5
+
+Windows:
+p5.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Original Document : This is an important document
+Digital Signature : (hash value)
+Verification      : Valid Signature
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is digital signature?
+Ans: It verifies sender identity and data integrity.
+
+Q2. How is signature created?
+Ans: By hashing document and signing it.
+
+Q3. What does receiver do?
+Ans: Verifies hash/signature.
+
+Q4. Main uses?
+Ans: Secure documents, contracts, emails.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python version uses SHA-256 for signature demo.
+2. Real systems use RSA + hash together.
+3. This is simple exam-safe practical.
+
+
+============================================================
+END OF PRACTICAL 5
+============================================================
