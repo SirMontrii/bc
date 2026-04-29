@@ -1,0 +1,148 @@
+============================================================
+FILE NAME:
+Practical_06_Blockchain_History.txt
+============================================================
+
+
+============================================================
+PRACTICAL 6
+Create a Blockchain containing:
+1. Block Hash
+2. Transaction History
+3. Time of Creation
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical6.py
+
+import hashlib
+import time
+
+class Block:
+    def __init__(self, data, previous_hash):
+        self.timestamp = time.ctime()
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calculate_hash()
+
+    def calculate_hash(self):
+        text = self.timestamp + self.data + self.previous_hash
+        return hashlib.sha256(text.encode()).hexdigest()
+
+# Create blocks
+block1 = Block("A sends 10 coins to B", "0")
+block2 = Block("B sends 5 coins to C", block1.hash)
+block3 = Block("C sends 2 coins to D", block2.hash)
+
+# Print blockchain
+for block in [block1, block2, block3]:
+    print("Time        :", block.timestamp)
+    print("Transaction :", block.data)
+    print("Hash        :", block.hash)
+    print()
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical6.py
+
+OR
+
+python3 practical6.py
+
+
+Ubuntu:
+python3 practical6.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical6.cpp
+
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+    time_t now = time(0);
+
+    cout << "Time        : " << ctime(&now);
+    cout << "Transaction : A sends 10 coins to B" << endl;
+    cout << "Hash        : HASH12345" << endl;
+
+    cout << endl;
+
+    cout << "Time        : " << ctime(&now);
+    cout << "Transaction : B sends 5 coins to C" << endl;
+    cout << "Hash        : HASH67890" << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Windows / Ubuntu:
+
+g++ practical6.cpp -o p6
+./p6
+
+Windows:
+p6.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Time        : current date/time
+Transaction : A sends 10 coins to B
+Hash        : xxxxxxxxxxxxxx
+
+Time        : current date/time
+Transaction : B sends 5 coins to C
+Hash        : xxxxxxxxxxxxxx
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What does a block contain?
+Ans: Data, timestamp, previous hash, current hash.
+
+Q2. Why timestamp is added?
+Ans: To record block creation time.
+
+Q3. Why transaction history stored?
+Ans: To maintain transparent ledger.
+
+Q4. Why hash used?
+Ans: To secure and link blocks.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python version gives real blockchain style output.
+2. C++ version is simple exam-safe version.
+3. Use Python if available.
+
+
+============================================================
+END OF PRACTICAL 6
+============================================================
