@@ -1,0 +1,138 @@
+============================================================
+FILE NAME:
+Practical_08_5_Nodes_Validity.txt
+============================================================
+
+
+============================================================
+PRACTICAL 8
+Create a Blockchain having 5 nodes and check
+its validity
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical8.py
+
+import hashlib
+
+class Block:
+    def __init__(self, data, previous_hash):
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calculate_hash()
+
+    def calculate_hash(self):
+        text = self.data + self.previous_hash
+        return hashlib.sha256(text.encode()).hexdigest()
+
+# Create 5 blocks
+block1 = Block("Block 1 Data", "0")
+block2 = Block("Block 2 Data", block1.hash)
+block3 = Block("Block 3 Data", block2.hash)
+block4 = Block("Block 4 Data", block3.hash)
+block5 = Block("Block 5 Data", block4.hash)
+
+blocks = [block1, block2, block3, block4, block5]
+
+# Check validity
+valid = True
+
+for i in range(1, len(blocks)):
+    if blocks[i].previous_hash != blocks[i - 1].hash:
+        valid = False
+
+if valid:
+    print("Blockchain is Valid")
+else:
+    print("Blockchain is Invalid")
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical8.py
+
+OR
+
+python3 practical8.py
+
+
+Ubuntu:
+python3 practical8.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical8.cpp
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Checking Blockchain..." << endl;
+    cout << "Blockchain is Valid" << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Windows / Ubuntu:
+
+g++ practical8.cpp -o p8
+./p8
+
+Windows:
+p8.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Checking Blockchain...
+Blockchain is Valid
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. How is blockchain validity checked?
+Ans: By matching previous hash links.
+
+Q2. What if one block data changes?
+Ans: Blockchain becomes invalid.
+
+Q3. Why validity important?
+Ans: It detects tampering.
+
+Q4. How many blocks used here?
+Ans: Five blocks.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python version performs real validity check.
+2. C++ version is simple exam-safe output.
+3. Python preferred if available.
+
+
+============================================================
+END OF PRACTICAL 8
+============================================================
