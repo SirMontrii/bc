@@ -1,0 +1,148 @@
+============================================================
+PRACTICAL 2
+Write a program to encrypt and decrypt the message:
+"Hello World" using SHA-256
+============================================================
+
+NOTE:
+SHA-256 is a HASHING algorithm, not an encryption algorithm.
+It can generate a secure digest, but original text cannot be
+decrypted back.
+
+For practical exam, we will:
+1. Show SHA-256 hash generation
+2. Explain that decryption is not possible
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical2.py
+
+import hashlib
+
+# Original message
+message = "Hello World"
+
+# Generate SHA-256 hash
+hash_result = hashlib.sha256(message.encode())
+
+print("Original Message :", message)
+print("Encrypted(Hash)  :", hash_result.hexdigest())
+print("Decryption       : Not Possible with SHA-256")
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical2.py
+
+OR
+
+python3 practical2.py
+
+
+Ubuntu:
+python3 practical2.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical2.cpp
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+#include <openssl/sha.h>
+
+using namespace std;
+
+int main()
+{
+    string message = "Hello World";
+
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+
+    SHA256((unsigned char*)message.c_str(),
+           message.length(),
+           hash);
+
+    cout << "Original Message : " << message << endl;
+    cout << "Encrypted(Hash)  : ";
+
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+        cout << hex
+             << setw(2)
+             << setfill('0')
+             << (int)hash[i];
+    }
+
+    cout << endl;
+
+    cout << "Decryption       : Not Possible with SHA-256" << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Ubuntu:
+
+g++ practical2.cpp -o p2 -lssl -lcrypto
+./p2
+
+
+Windows (if OpenSSL installed):
+
+g++ practical2.cpp -o p2 -lssl -lcrypto
+p2.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Original Message : Hello World
+Encrypted(Hash)  : (64 hexadecimal characters)
+Decryption       : Not Possible with SHA-256
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. Is SHA-256 encryption?
+Ans: No, it is a hashing algorithm.
+
+Q2. Can SHA-256 decrypt data?
+Ans: No, hash cannot be reversed.
+
+Q3. Why teacher wrote encrypt/decrypt?
+Ans: Sometimes hash is loosely called encryption,
+but technically it is hashing.
+
+Q4. Where is SHA-256 used?
+Ans: Blockchain, passwords, integrity checking.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. SHA-256 only converts message into hash.
+2. Original text cannot be recovered.
+3. Python version is safest in lab.
+
+
+============================================================
+END OF PRACTICAL 2
+============================================================
