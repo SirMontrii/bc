@@ -1,0 +1,105 @@
+============================================================
+FILE NAME:
+Practical_09_Smart_Contract_Solidity.txt
+============================================================
+
+
+============================================================
+PRACTICAL 9
+Implement a Smart Contract using Solidity
+============================================================
+
+
+-------------------------
+SOLIDITY CODE
+-------------------------
+
+// Save as: practical9.sol
+
+pragma solidity ^0.8.0;
+
+contract SimpleStorage
+{
+    uint public data;
+
+    function setValue(uint x) public
+    {
+        data = x;
+    }
+
+    function getValue() public view returns(uint)
+    {
+        return data;
+    }
+}
+
+
+-------------------------
+HOW TO RUN
+-------------------------
+
+METHOD 1 (Best & Easy):
+Use :contentReference[oaicite:0]{index=0}
+
+Steps:
+1. Open Remix IDE in browser
+2. Create file practical9.sol
+3. Paste code
+4. Compile
+5. Deploy
+6. Use setValue()
+7. Use getValue()
+
+METHOD 2 (Offline if compiler installed):
+
+solc practical9.sol
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+After Deploy:
+
+setValue(100)
+
+Then:
+
+getValue()
+
+Output:
+100
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is smart contract?
+Ans: Self-executing program stored on blockchain.
+
+Q2. Which language used?
+Ans: Solidity.
+
+Q3. What is function of setValue()?
+Ans: Stores value.
+
+Q4. What is function of getValue()?
+Ans: Returns stored value.
+
+Q5. Where deployed?
+Ans: :contentReference[oaicite:1]{index=1} blockchain.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. This is real Solidity code.
+2. If no lab setup, show code + explain steps.
+3. Most teachers accept code demonstration.
+
+
+============================================================
+END OF PRACTICAL 9
+============================================================
