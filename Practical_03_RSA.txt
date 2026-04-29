@@ -1,0 +1,167 @@
+============================================================
+FILE NAME:
+Practical_03_RSA.txt
+============================================================
+
+
+============================================================
+PRACTICAL 3
+Implement RSA Cryptographic Algorithm
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical3.py
+
+# Simple RSA Program
+
+# Choose two prime numbers
+p = 3
+q = 11
+
+# Calculate n
+n = p * q
+
+# Calculate phi
+phi = (p - 1) * (q - 1)
+
+# Choose e
+e = 7
+
+# Find d such that (d * e) % phi = 1
+d = 3
+
+# Original message
+message = 9
+
+# Encryption
+cipher = (message ** e) % n
+
+# Decryption
+plain = (cipher ** d) % n
+
+print("Value of n        :", n)
+print("Value of phi      :", phi)
+print("Public Key (e,n)  :", (e, n))
+print("Private Key (d,n) :", (d, n))
+print("Original Message  :", message)
+print("Encrypted Message :", cipher)
+print("Decrypted Message :", plain)
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical3.py
+
+OR
+
+python3 practical3.py
+
+
+Ubuntu:
+python3 practical3.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical3.cpp
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int p = 3;
+    int q = 11;
+
+    int n = p * q;
+    int phi = (p - 1) * (q - 1);
+
+    int e = 7;
+    int d = 3;
+
+    int message = 9;
+
+    int cipher = (int)pow(message, e) % n;
+    int plain  = (int)pow(cipher, d) % n;
+
+    cout << "Value of n        : " << n << endl;
+    cout << "Value of phi      : " << phi << endl;
+    cout << "Public Key (e,n)  : (" << e << "," << n << ")" << endl;
+    cout << "Private Key (d,n) : (" << d << "," << n << ")" << endl;
+    cout << "Original Message  : " << message << endl;
+    cout << "Encrypted Message : " << cipher << endl;
+    cout << "Decrypted Message : " << plain << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Windows / Ubuntu:
+
+g++ practical3.cpp -o p3
+./p3
+
+Windows:
+p3.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Value of n        : 33
+Value of phi      : 20
+Public Key (e,n)  : (7,33)
+Private Key (d,n) : (3,33)
+Original Message  : 9
+Encrypted Message : 15
+Decrypted Message : 9
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is RSA?
+Ans: RSA is an asymmetric encryption algorithm.
+
+Q2. How many keys are used in RSA?
+Ans: Two keys: Public key and Private key.
+
+Q3. What is public key used for?
+Ans: Encryption.
+
+Q4. What is private key used for?
+Ans: Decryption.
+
+Q5. Why prime numbers are used?
+Ans: For secure key generation.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. This is a small educational RSA example.
+2. Real RSA uses very large prime numbers.
+3. This code is simple and best for practical exam.
+
+
+============================================================
+END OF PRACTICAL 3
+============================================================
