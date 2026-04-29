@@ -1,2 +1,10 @@
 1. winget install --id Git.Git -e --source winget
 2. git clone https://github.com/SirMontrii/bc
+
+
+inhe terminal par run krna cmd vale
+phele git install hoga 
+fir clone ho jaygi repo jis directory me tum ho
+
+example: C:\Users\Mayank>git clone https://github.com/SirMontrii/bc 
+--> this will clone it in C:\Users\Mayank
