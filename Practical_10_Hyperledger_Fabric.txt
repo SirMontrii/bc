@@ -1,0 +1,119 @@
+============================================================
+FILE NAME:
+Practical_10_Hyperledger_Fabric.txt
+============================================================
+
+
+============================================================
+PRACTICAL 10
+Create a Simple Permissioned Blockchain using
+Hyperledger Fabric
+============================================================
+
+
+-------------------------
+PYTHON SIMULATION CODE
+-------------------------
+
+# Save as: practical10.py
+
+# Simple Permissioned Blockchain Simulation
+
+authorized_users = ["Admin", "User1", "User2"]
+
+ledger = []
+
+user = "Admin"
+
+if user in authorized_users:
+    ledger.append("Transaction: A sends 50 coins to B")
+    print("Access Granted")
+    print("Transaction Added")
+else:
+    print("Access Denied")
+
+print("Ledger Data:")
+
+for item in ledger:
+    print(item)
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical10.py
+
+OR
+
+python3 practical10.py
+
+
+Ubuntu:
+python3 practical10.py
+
+
+-------------------------
+REAL HYPERLEDGER FABRIC STEPS
+-------------------------
+
+Required:
+1. Ubuntu Linux
+2. Docker
+3. Docker Compose
+4. Hyperledger Fabric binaries
+
+Basic Commands:
+
+curl -sSL https://bit.ly/2ysbOFE | bash -s
+
+cd fabric-samples/test-network
+
+./network.sh up
+
+./network.sh createChannel
+
+./network.sh deployCC
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Access Granted
+Transaction Added
+
+Ledger Data:
+Transaction: A sends 50 coins to B
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is permissioned blockchain?
+Ans: Only authorized users can join network.
+
+Q2. Which platform used?
+Ans: :contentReference[oaicite:2]{index=2}
+
+Q3. Difference from public blockchain?
+Ans: Public is open to all, permissioned is restricted.
+
+Q4. Where used?
+Ans: Banking, supply chain, enterprises.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python code is exam-safe simulation.
+2. Real Hyperledger needs Ubuntu + Docker.
+3. If lab lacks setup, explain commands + show code.
+
+
+============================================================
+END OF PRACTICAL 10
+============================================================
