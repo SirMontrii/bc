@@ -1,0 +1,137 @@
+============================================================
+PRACTICAL 1
+Using SHA-256, obtain the message digest of string:
+"Blockchain Developer"
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical1.py
+
+import hashlib
+
+# Input message
+message = "Blockchain Developer"
+
+# Generate SHA-256 hash
+hash_result = hashlib.sha256(message.encode())
+
+# Print output
+print("Original Message :", message)
+print("SHA-256 Digest   :", hash_result.hexdigest())
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical1.py
+
+OR
+
+python3 practical1.py
+
+
+Ubuntu:
+python3 practical1.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical1.cpp
+
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+#include <openssl/sha.h>
+
+using namespace std;
+
+int main()
+{
+    string message = "Blockchain Developer";
+
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+
+    SHA256((unsigned char*)message.c_str(),
+           message.length(),
+           hash);
+
+    cout << "Original Message : " << message << endl;
+    cout << "SHA-256 Digest   : ";
+
+    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+        cout << hex
+             << setw(2)
+             << setfill('0')
+             << (int)hash[i];
+    }
+
+    cout << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Ubuntu:
+
+g++ practical1.cpp -o p1 -lssl -lcrypto
+./p1
+
+
+Windows (if OpenSSL installed):
+
+g++ practical1.cpp -o p1 -lssl -lcrypto
+p1.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Original Message : Blockchain Developer
+SHA-256 Digest   : (64 hexadecimal characters)
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is SHA-256?
+Ans: SHA-256 is a cryptographic hash function that
+produces a 256-bit fixed length hash value.
+
+Q2. Can SHA-256 be decrypted?
+Ans: No, it is a one-way function.
+
+Q3. Why is SHA-256 used in blockchain?
+Ans: It is used for block hashing, security,
+and tamper detection.
+
+Q4. If same input is given again, same output comes?
+Ans: Yes, SHA-256 is deterministic.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python version is safest for lab practical.
+2. If C++ gives OpenSSL error, use Python code.
+3. Output hash always remains same for same input.
+
+
+============================================================
+END OF PRACTICAL 1
+============================================================
