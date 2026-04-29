@@ -1,0 +1,2 @@
+1. winget install --id Git.Git -e --source winget
+2. git clone https://github.com/SirMontrii/bc
