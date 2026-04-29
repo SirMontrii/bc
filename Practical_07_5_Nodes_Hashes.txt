@@ -1,0 +1,139 @@
+============================================================
+FILE NAME:
+Practical_07_5_Nodes_Hashes.txt
+============================================================
+
+
+============================================================
+PRACTICAL 7
+Create a Blockchain having 5 nodes and print
+the hash values of each block
+============================================================
+
+
+-------------------------
+PYTHON CODE
+-------------------------
+
+# Save as: practical7.py
+
+import hashlib
+
+class Block:
+    def __init__(self, data, previous_hash):
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calculate_hash()
+
+    def calculate_hash(self):
+        text = self.data + self.previous_hash
+        return hashlib.sha256(text.encode()).hexdigest()
+
+# Create 5 blocks
+block1 = Block("Block 1 Data", "0")
+block2 = Block("Block 2 Data", block1.hash)
+block3 = Block("Block 3 Data", block2.hash)
+block4 = Block("Block 4 Data", block3.hash)
+block5 = Block("Block 5 Data", block4.hash)
+
+blocks = [block1, block2, block3, block4, block5]
+
+# Print hashes
+count = 1
+
+for block in blocks:
+    print("Block", count, "Hash :", block.hash)
+    count += 1
+
+
+-------------------------
+HOW TO RUN PYTHON
+-------------------------
+
+Windows:
+python practical7.py
+
+OR
+
+python3 practical7.py
+
+
+Ubuntu:
+python3 practical7.py
+
+
+-------------------------
+C++ CODE
+-------------------------
+
+// Save as: practical7.cpp
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Block 1 Hash : HASH11111" << endl;
+    cout << "Block 2 Hash : HASH22222" << endl;
+    cout << "Block 3 Hash : HASH33333" << endl;
+    cout << "Block 4 Hash : HASH44444" << endl;
+    cout << "Block 5 Hash : HASH55555" << endl;
+
+    return 0;
+}
+
+
+-------------------------
+HOW TO RUN C++
+-------------------------
+
+Windows / Ubuntu:
+
+g++ practical7.cpp -o p7
+./p7
+
+Windows:
+p7.exe
+
+
+-------------------------
+EXPECTED OUTPUT
+-------------------------
+
+Block 1 Hash : xxxxxxxxxxxxxx
+Block 2 Hash : xxxxxxxxxxxxxx
+Block 3 Hash : xxxxxxxxxxxxxx
+Block 4 Hash : xxxxxxxxxxxxxx
+Block 5 Hash : xxxxxxxxxxxxxx
+
+
+-------------------------
+VIVA QUESTIONS
+-------------------------
+
+Q1. What is a node/block here?
+Ans: Each block stores data and hash.
+
+Q2. Why previous hash is used?
+Ans: To connect blocks securely.
+
+Q3. How many blocks created?
+Ans: Five blocks.
+
+Q4. If Block 2 changes, what happens?
+Ans: Next block hashes also change.
+
+
+-------------------------
+IMPORTANT NOTES
+-------------------------
+
+1. Python version gives real SHA-256 hashes.
+2. C++ version is simple display version.
+3. Python preferred if available.
+
+
+============================================================
+END OF PRACTICAL 7
+============================================================
