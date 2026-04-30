@@ -7,6 +7,7 @@ Practical_05_Digital_Signature.txt
 ============================================================
 PRACTICAL 5
 Demonstrate Sending of a Digitally Signed Document
+(User Input Version)
 ============================================================
 
 
@@ -18,17 +19,17 @@ PYTHON CODE
 
 import hashlib
 
-# Original document
-document = "This is an important document"
+# User enters document
+document = input("Enter Document Text : ")
 
-# Sender creates signature using hash
+# Create digital signature
 signature = hashlib.sha256(document.encode()).hexdigest()
 
-print("Original Document :", document)
+print("\nOriginal Document :", document)
 print("Digital Signature :", signature)
 
-# Receiver verifies document
-received_document = document
+# Receiver side verification
+received_document = input("\nEnter Received Document For Verification : ")
 
 verify_hash = hashlib.sha256(received_document.encode()).hexdigest()
 
@@ -36,6 +37,7 @@ if verify_hash == signature:
     print("Verification      : Valid Signature")
 else:
     print("Verification      : Invalid Signature")
+    print("Document Changed / Tampered")
 
 
 -------------------------
@@ -67,11 +69,29 @@ using namespace std;
 
 int main()
 {
-    string document = "This is an important document";
+    string document;
+    string received_document;
 
+    cout << "Enter Document Text : ";
+    getline(cin, document);
+
+    cout << endl;
     cout << "Original Document : " << document << endl;
-    cout << "Digital Signature : HASH_VALUE_12345" << endl;
-    cout << "Verification      : Valid Signature" << endl;
+    cout << "Digital Signature : HASH_VALUE_GENERATED" << endl;
+
+    cout << endl;
+    cout << "Enter Received Document For Verification : ";
+    getline(cin, received_document);
+
+    if(document == received_document)
+    {
+        cout << "Verification      : Valid Signature" << endl;
+    }
+    else
+    {
+        cout << "Verification      : Invalid Signature" << endl;
+        cout << "Document Changed / Tampered" << endl;
+    }
 
     return 0;
 }
@@ -94,9 +114,23 @@ p5.exe
 EXPECTED OUTPUT
 -------------------------
 
-Original Document : This is an important document
-Digital Signature : (hash value)
+Enter Document Text : Hello User
+
+Original Document : Hello User
+Digital Signature : xxxxxxxxxxxxxx
+
+Enter Received Document For Verification : Hello User
+
 Verification      : Valid Signature
+
+
+OR
+
+
+Enter Received Document For Verification : Hello Hacker
+
+Verification      : Invalid Signature
+Document Changed / Tampered
 
 
 -------------------------
@@ -104,25 +138,28 @@ VIVA QUESTIONS
 -------------------------
 
 Q1. What is digital signature?
-Ans: It verifies sender identity and data integrity.
+Ans: It verifies sender identity and integrity.
 
-Q2. How is signature created?
-Ans: By hashing document and signing it.
+Q2. Why hash used?
+Ans: To generate unique signature.
 
-Q3. What does receiver do?
-Ans: Verifies hash/signature.
+Q3. What if document changes?
+Ans: Signature verification fails.
 
-Q4. Main uses?
-Ans: Secure documents, contracts, emails.
+Q4. Where used?
+Ans: Emails, legal files, blockchain.
+
+Q5. Why user input used?
+Ans: To test different documents dynamically.
 
 
 -------------------------
 IMPORTANT NOTES
 -------------------------
 
-1. Python version uses SHA-256 for signature demo.
-2. Real systems use RSA + hash together.
-3. This is simple exam-safe practical.
+1. Python version uses real SHA-256 hash.
+2. C++ version is simple comparison version.
+3. Better practical because teacher can test own input.
 
 
 ============================================================
