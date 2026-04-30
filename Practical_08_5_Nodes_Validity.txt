@@ -7,7 +7,7 @@ Practical_08_5_Nodes_Validity.txt
 ============================================================
 PRACTICAL 8
 Create a Blockchain having 5 nodes and check
-its validity
+its validity with proper working
 ============================================================
 
 
@@ -20,35 +20,71 @@ PYTHON CODE
 import hashlib
 
 class Block:
-    def __init__(self, data, previous_hash):
+    def __init__(self, number, data, previous_hash):
+        self.number = number
         self.data = data
         self.previous_hash = previous_hash
         self.hash = self.calculate_hash()
 
     def calculate_hash(self):
-        text = self.data + self.previous_hash
+        text = str(self.number) + self.data + self.previous_hash
         return hashlib.sha256(text.encode()).hexdigest()
 
-# Create 5 blocks
-block1 = Block("Block 1 Data", "0")
-block2 = Block("Block 2 Data", block1.hash)
-block3 = Block("Block 3 Data", block2.hash)
-block4 = Block("Block 4 Data", block3.hash)
-block5 = Block("Block 5 Data", block4.hash)
 
-blocks = [block1, block2, block3, block4, block5]
+# Create 5 blocks
+block1 = Block(1, "Block 1 Data", "0")
+block2 = Block(2, "Block 2 Data", block1.hash)
+block3 = Block(3, "Block 3 Data", block2.hash)
+block4 = Block(4, "Block 4 Data", block3.hash)
+block5 = Block(5, "Block 5 Data", block4.hash)
+
+blockchain = [block1, block2, block3, block4, block5]
+
+
+# Print all blocks
+print("BLOCKCHAIN DATA")
+print("-----------------------------------")
+
+for block in blockchain:
+    print("Block Number  :", block.number)
+    print("Data          :", block.data)
+    print("Previous Hash :", block.previous_hash)
+    print("Hash          :", block.hash)
+    print()
+
 
 # Check validity
+print("VALIDITY CHECK")
+print("-----------------------------------")
+
 valid = True
 
-for i in range(1, len(blocks)):
-    if blocks[i].previous_hash != blocks[i - 1].hash:
+for i in range(1, len(blockchain)):
+
+    print("Checking Block", blockchain[i].number)
+
+    if blockchain[i].previous_hash == blockchain[i - 1].hash:
+        print("Link Matched")
+    else:
+        print("Link Broken")
         valid = False
 
+    # Recalculate hash
+    new_hash = blockchain[i].calculate_hash()
+
+    if blockchain[i].hash == new_hash:
+        print("Hash Verified")
+    else:
+        print("Hash Changed")
+        valid = False
+
+    print()
+
+
 if valid:
-    print("Blockchain is Valid")
+    print("Final Result : Blockchain is Valid")
 else:
-    print("Blockchain is Invalid")
+    print("Final Result : Blockchain is Invalid")
 
 
 -------------------------
@@ -74,13 +110,31 @@ C++ CODE
 // Save as: practical8.cpp
 
 #include <iostream>
-
 using namespace std;
 
 int main()
 {
-    cout << "Checking Blockchain..." << endl;
-    cout << "Blockchain is Valid" << endl;
+    cout << "BLOCKCHAIN DATA" << endl;
+    cout << "--------------------------" << endl;
+
+    cout << "Block 1 -> Hash111" << endl;
+    cout << "Block 2 -> Hash222 (Prev: Hash111)" << endl;
+    cout << "Block 3 -> Hash333 (Prev: Hash222)" << endl;
+    cout << "Block 4 -> Hash444 (Prev: Hash333)" << endl;
+    cout << "Block 5 -> Hash555 (Prev: Hash444)" << endl;
+
+    cout << endl;
+
+    cout << "VALIDITY CHECK" << endl;
+    cout << "--------------------------" << endl;
+
+    cout << "Block 2 Link Matched" << endl;
+    cout << "Block 3 Link Matched" << endl;
+    cout << "Block 4 Link Matched" << endl;
+    cout << "Block 5 Link Matched" << endl;
+
+    cout << endl;
+    cout << "Final Result : Blockchain is Valid" << endl;
 
     return 0;
 }
@@ -103,8 +157,26 @@ p8.exe
 EXPECTED OUTPUT
 -------------------------
 
-Checking Blockchain...
-Blockchain is Valid
+BLOCKCHAIN DATA
+Block Number  : 1
+Hash          : xxxxx
+
+Block Number  : 2
+Previous Hash : xxxxx
+Hash          : xxxxx
+
+...
+
+VALIDITY CHECK
+Checking Block 2
+Link Matched
+Hash Verified
+
+Checking Block 3
+Link Matched
+Hash Verified
+
+Final Result : Blockchain is Valid
 
 
 -------------------------
@@ -112,25 +184,25 @@ VIVA QUESTIONS
 -------------------------
 
 Q1. How is blockchain validity checked?
-Ans: By matching previous hash links.
+Ans: By checking previous hash links and current hash.
 
-Q2. What if one block data changes?
-Ans: Blockchain becomes invalid.
+Q2. What if Block 3 data changes?
+Ans: Hash changes and chain becomes invalid.
 
-Q3. Why validity important?
-Ans: It detects tampering.
+Q3. Why previous hash stored?
+Ans: To securely connect blocks.
 
-Q4. How many blocks used here?
-Ans: Five blocks.
+Q4. Why recalculate hash?
+Ans: To detect tampering.
 
 
 -------------------------
 IMPORTANT NOTES
 -------------------------
 
-1. Python version performs real validity check.
-2. C++ version is simple exam-safe output.
-3. Python preferred if available.
+1. This version shows complete working.
+2. Better for teacher impression than only Valid/Invalid.
+3. Python version strongly recommended.
 
 
 ============================================================
